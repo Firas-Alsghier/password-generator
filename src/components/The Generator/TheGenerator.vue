@@ -1,5 +1,5 @@
 <template>
-  <div class="generator w-4/6 bg-stone-100 h-80 rounded-md mb-5">
+  <div class="generator w-4/6 bg-stone-100 h-85 rounded-md mb-5">
     <div class="generator-container w-11/12 h-full m-auto pt-10">
       <div class="length flex justify-between text-xl">
         <p>password length: 0</p>
@@ -7,11 +7,16 @@
           <button class="bg-slate-800 text-white py-2 px-3 rounded" @click="defaultRandomPassword">Generate</button>
         </div>
         <div class="bars flex">
-          <p>Weak</p>
-          <div class="w-4 h-7 bg-white mr-2 ml-5"></div>
-          <div class="w-4 h-7 bg-white mr-2"></div>
-          <div class="w-4 h-7 bg-white mr-2"></div>
-          <div class="w-4 h-7 bg-white mr-2"></div>
+          <p v-if="rangeValue < 8">Weak</p>
+          <p v-if="rangeValue >= 8 && rangeValue < 20">medium</p>
+          <p v-if="rangeValue >= 20">Strong</p>
+          <p v-else></p>
+          <div class="w-4 h-7 bg-red-700 mr-2 ml-5 transition-all duration-300" v-if="rangeValue < 8"></div>
+          <div class="w-4 h-7 bg-white mr-2 ml-5 transition-all duration-300" v-else></div>
+          <div class="w-4 h-7 bg-orange-500 mr-2 transition-all duration-300" v-if="rangeValue >= 8 && rangeValue < 20"></div>
+          <div class="w-4 h-7 bg-white mr-2 transition-all duration-300" v-else></div>
+          <div class="w-4 h-7 bg-green-600 mr-2 transition-all duration-300" v-if="rangeValue >= 20"></div>
+          <div class="w-4 h-7 bg-white mr-2 transition-all duration-300" v-else></div>
         </div>
       </div>
       <div class="password-range flex flex-col items-center mt-12">

@@ -27,6 +27,7 @@ export default {
   methods: {
     darkMode() {
       document.querySelector('html').classList.toggle('dark');
+      document.querySelector('body').classList.add('dark:bg-slate-800', 'transition-all', 'duration-300');
       document.querySelector('.ball').classList.toggle('-translate-x-4');
     },
   },
